@@ -1,0 +1,1 @@
+C:\Users\david.medine\Devel\Diademics_git\BrainProducts_BCI_Event\getting_setup\lsl_cpp_foo\x64\Debug\lsl_cpp_foo.exe

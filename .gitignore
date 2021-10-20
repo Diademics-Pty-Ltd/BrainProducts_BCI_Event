@@ -1,0 +1,7 @@
+outline.txt
+.vs
+*/.vs
+.vs/*
+bin
+*/bin
+bin/*

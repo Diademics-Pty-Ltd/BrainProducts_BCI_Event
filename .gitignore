@@ -5,3 +5,9 @@ outline.txt
 bin
 */bin
 bin/*
+env
+*/env
+env/*
+*/obj
+obj 
+obj/*

@@ -1,1 +1,0 @@
-C:\Users\david.medine\Devel\Diademics_git\BrainProducts_BCI_Event\getting_setup\lsl_hello_world\x64\Debug\lsl_hello_world.exe

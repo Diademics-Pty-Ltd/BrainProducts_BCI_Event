@@ -1,0 +1,82 @@
+﻿<Window x:Class="TriggerBoxListener.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TriggerBoxListener"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:ei="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
+        d:DataContext="{d:DesignInstance local:ViewModel}"
+        mc:Ignorable="d"
+        Title="TriggerBoxListener" 
+        Height="301" 
+        Width="686"
+        x:ClassModifier="internal">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="37"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0"
+                    Grid.Row="0"
+                    Margin="5">
+            <StackPanel Orientation="Horizontal"
+                        Margin="5">
+                <Label Content="Com Port:"
+                       Margin="5"/>
+                <TextBox Text="{Binding ComPortNumber}"
+                         MinWidth="10"
+                         Margin="5"/>
+            </StackPanel>
+            <Button Content="{Binding ConnectText}"
+                    Command="{Binding ConnectToTriggerBox}"
+                    IsEnabled="{Binding ConnectEnabled  }"
+                    Margin="5"/>
+        </StackPanel>
+        <ScrollViewer VerticalScrollBarVisibility="Auto"
+                      Name="ServerScroll"
+                      Grid.Row="0"
+                     Grid.Column="1">
+            <TextBox Text="{Binding ConsoleOutput}"
+                     Margin="5">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="TextChanged">
+                        <ei:CallMethodAction MethodName="ScrollToEnd" TargetObject="{Binding ElementName=ServerScroll}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </TextBox>
+        </ScrollViewer>
+        <Grid Grid.Row="1" Grid.ColumnSpan="2">
+            <StatusBar Margin="5,5,5,5">
+                <StatusBar.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                        </Grid>
+                    </ItemsPanelTemplate>
+                </StatusBar.ItemsPanel>
+                <StatusBarItem Grid.Column="0">
+                    <TextBlock Text="{Binding StatusState}"/>
+                </StatusBarItem>
+                <Separator Grid.Column="1"/>
+                <StatusBarItem Grid.Column="2">
+                    <ProgressBar Width="130"
+                                 Height="16"
+                                 Minimum="0"
+                                 IsIndeterminate="{Binding RunProgressBar}"/>
+                </StatusBarItem>
+            </StatusBar>
+
+        </Grid>
+    </Grid>
+</Window>
